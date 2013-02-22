@@ -3,8 +3,6 @@
 include 'connect.php';
 
 
-
-	//To be fixed
 	$ad = $_POST["ad"];
 	$soyad = $_POST["soyad"];
 	
@@ -15,7 +13,7 @@ include 'connect.php';
 
 	$sqlInsert  = "INSERT INTO tblCalisan (ad, soyad, initials, girisTarihi, sonTerfi, kimlikNo) VALUES (?,?,?,?,?,?)";
 	
-	if(($InsertStatement =$con->prepare($sqlInsert))==FALSE)
+	if(($InsertStatement=$con->prepare($sqlInsert))==FALSE)
 	{
 		die("Prepare failed!");
 	}
@@ -23,18 +21,9 @@ include 'connect.php';
 	$InsertStatement->bind_param("ssssss", $ad, $soyad, $initials, $girisTarihi, $sonTerfi, $kimlikNo);
 
 	echo $ad ;
-/*
-	if ($con->query($sqlInsert) == TRUE)
-  	{
-  		echo "1 record added";
-  	}
-	else
+	if(!$InsertStatement->execute())
 	{
-		echo 'Error: ' . $con->error;
-		exit();
+		echo "Execute failed: (" . $InsertStatement->errno .") ". $InsertStatement->error;
 	}
-
-	$con->close();
-*/
 
 ?>
