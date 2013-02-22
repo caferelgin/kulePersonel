@@ -1,15 +1,8 @@
 <?php
 
-//include 'connect.php'
-	
-	$con = new mysqli('localhost','cafer','1234', 'kule_db');
-	
+include 'connect.php';
 
-	if ($con->connect_errno) 
-	{  	
-  		exit('Connect failed: '. $con->connect_error . " " . $con->connect_error);
-	}
-	echo $con->host_info . "\n";
+
 
 	//To be fixed
 	$ad = $_POST["ad"];
@@ -21,6 +14,7 @@
 	$kimlikNo = $_POST["kimlikNo"];
 
 	$sqlInsert  = "INSERT INTO tblCalisan (ad, soyad, initials, girisTarihi, sonTerfi ,kimlikNo) VALUES (?,?,?,?,?,?) ";
+	$InsertStatement = $con->prepare($sqlInsert);
 
 	echo $ad ;
 /*
