@@ -1,17 +1,21 @@
 <?php
+
 include 'connect.php'
 	
 	//To be fixed
-
 	$sqlInsert  = "INSERT INTO tblCalisan (ad, soyad, initials, girisTarihi, sonTerfi ,kimlikNo) 
-	VALUES ('$_POST[ad]', '$_POST[soyad]', '$_POST[initials]', '$_POST[kgTarihi]', '$_POST[sTTarihi]'");
+	VALUES ('$_POST[ad]', '$_POST[soyad]', '$_POST[initials]', '$_POST[kgTarihi]', '$_POST[sTTarihi]')";
 
-	if (!mysql_query($sqlInsert,$con))
+	if ($con->query($sqlInsert) == TRUE)
   	{
-  		die('Error: ' . mysql_error());
+  		echo "1 record added";
   	}
-	echo "1 record added";
+	else
+	{
+		echo 'Error: ' . $con->error;
+	}
 
-	mysql_close($con);
+	$con->close();
 
+	//echo "$_POST[ad]";
 ?>
