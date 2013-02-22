@@ -3,7 +3,7 @@
  	// Values to be changed 
 	//$con = mysql_connect("localhost","cafer","1234");
 		
-	$con = new mysqli('localhost','cafer','1234', 'kule_db');
+	$con = new mysqli('localhost','cafer','1234', 'kuledb');
 	
 
 	if ($con->connect_errno) 
